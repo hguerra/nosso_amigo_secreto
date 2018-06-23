@@ -20,7 +20,7 @@ services:
       - 'redis'
       - 'website'
     build: .
-    command: bash start_jobs.sh
+    command: bash start_jobs
     volumes:
       - '.:/nosso_amigo_secreto'
     volumes_from:
