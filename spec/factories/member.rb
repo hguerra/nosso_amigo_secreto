@@ -4,4 +4,4 @@ FactoryBot.define do
     email        { FFaker::Internet.email }
     campaign
   end
- end
+end

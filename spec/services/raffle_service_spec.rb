@@ -51,7 +51,7 @@ describe RaffleService do
         @response = RaffleService.new(@campaign).call
       end
 
-      it "raise error" do
+      it "return false" do
         expect(@response).to eql(false)
       end
     end

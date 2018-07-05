@@ -4,4 +4,4 @@ FactoryBot.define do
     email        { FFaker::Internet.email }
     password     'secret123'
   end
- end
+end
