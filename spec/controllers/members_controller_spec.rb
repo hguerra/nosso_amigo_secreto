@@ -57,4 +57,18 @@ RSpec.describe MembersController, type: :controller do
       expect(JSON.parse(response.body)['campaign'][0]).to eq('must exist')
     end
   end
+
+  describe 'DELETE #destroy' do
+    before(:each) do
+      request.env['HTTP_ACCEPT'] = 'application/json'
+
+      @campaign = create(:campaign, user: @current_user)
+      @member = create(:member, campaign: @campaign)
+    end
+
+    it 'Delete member' do
+      delete :destroy, params: { id: @member.id }
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
