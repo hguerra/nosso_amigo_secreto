@@ -32,4 +32,29 @@ RSpec.describe MembersController, type: :controller do
       expect(JSON.parse(response.body)['campaign'][0]).to eq('must exist')
     end
   end
+
+  describe 'PUT #update' do
+    before(:each) do
+      request.env['HTTP_ACCEPT'] = 'application/json'
+
+      @campaign = create(:campaign, user: @current_user)
+      @member = create(:member, campaign: @campaign)
+    end
+
+    it 'Update member' do
+      new_name = 'MyNewName'
+
+      put :update, params: { id: @member.id, member: { name: new_name } }
+
+      expect(response).to have_http_status(:success)
+      expect(Member.last.name).to eq(new_name)
+    end
+
+    it 'Raise an error when updating a member' do
+      put :update, params: { id: @member.id, member: { campaign_id: nil } }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)['campaign'][0]).to eq('must exist')
+    end
+  end
 end
