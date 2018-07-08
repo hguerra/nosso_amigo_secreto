@@ -38,7 +38,7 @@ class MembersController < ApplicationController
   def opened
     @member.update(open: true)
     gif = Base64.decode64("R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
-    render text: gif, type: 'image/gif'
+    send_data gif, type: 'image/gif'
   end
 
   private

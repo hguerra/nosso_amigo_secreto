@@ -71,4 +71,20 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET #opened' do
+    before(:each) do
+      request.env['HTTP_ACCEPT'] = 'image/gif'
+
+      @campaign = create(:campaign, user: @current_user)
+      @member = create(:member, campaign: @campaign)
+      @member.set_pixel
+    end
+
+    it 'Invite Opened' do
+      get :opened, params: { token: @member.token }
+
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
