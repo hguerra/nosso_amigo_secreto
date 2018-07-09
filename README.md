@@ -1,24 +1,11 @@
-# README
+# Nosso Amigo Secreto
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App 2 OneBitCode.
 
-Things you may want to cover:
+# Fix permission issues
 
-* Ruby version
+```sh
 
-* System dependencies
+sudo chown -R $USER:$USER OneBitExChange
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
