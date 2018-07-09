@@ -30,5 +30,14 @@ RSpec.describe CampaignRaffleJob, type: :job do
       expect(CampaignRaffleJob).to have_been_enqueued.exactly(:once)
       expect(CampaignRaffleJob).to have_been_enqueued.with(@campaign)
     end
+
+    it 'call raffle service with less than 3 members' do
+      ActiveJob::Base.queue_adapter = :test
+
+      create(:member, campaign: @campaign)
+      CampaignRaffleJob.perform_later(@campaign)
+
+      expect(CampaignRaffleJob).to have_been_enqueued.exactly(:once)
+    end
   end
 end
