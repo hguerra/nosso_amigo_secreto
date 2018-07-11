@@ -1,4 +1,6 @@
 $(document).on 'turbolinks:load', ->
+  $('.modal').modal();
+
   $('.update_campaign input').bind 'blur', ->
     $('.update_campaign').submit()
 
@@ -14,6 +16,7 @@ $(document).on 'turbolinks:load', ->
     return false
 
   $('.remove_campaign').on 'submit', (e) ->
+    e.preventDefault()
     $.ajax e.target.action,
         type: 'DELETE'
         dataType: 'json',
@@ -25,7 +28,7 @@ $(document).on 'turbolinks:load', ->
     return false
 
   $('.raffle_campaign').on 'submit', (e) ->
-    $.ajax e.target.action,
+    $.ajax '',
         type: 'POST'
         dataType: 'json',
         data: {}
@@ -33,4 +36,8 @@ $(document).on 'turbolinks:load', ->
           Materialize.toast('Tudo certo, em breve os participantes receberão um email!', 4000, 'green')
         error: (jqXHR, textStatus, errorThrown) ->
           Materialize.toast(jqXHR.responseText, 4000, 'red')
+    return false
+
+  $('#btn_confirm_remove_campaign').click ->
+    $('#modal_confirm_remove_campaign').modal('open')
     return false

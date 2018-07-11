@@ -98,13 +98,28 @@
   <div class="row btn-actions">
     <div class="col s12 center">
       <div class="col s6 m3 offset-m3 l2 offset-l4">
-        <%= form_for @campaign, method: 'delete', html: {class: 'remove_campaign'} do |f| %>
-          <button type='submit' class="waves-effect waves-light btn grey">Remover</button>
-        <% end %>
+          <button id="btn_confirm_remove_campaign" data-target="modal_confirm_remove_campaign" class="waves-effect waves-light btn grey modal-trigger">Remover</button>
       </div>
       <div class="col s6 m3 l3">
         <%= form_tag(raffle_campaign_path(@campaign), method: 'post', class: 'raffle_campaign') do %>
-          <button type='submit' class="waves-effect waves-light btn red">Sortear e enviar</button>
+          <button type="submit" class="waves-effect waves-light btn red">Sortear e enviar</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal_confirm_remove_campaign" class="modal">
+    <div class="modal-content">
+      <h2>Remover Campanha</h2> <br/>
+      <h4>Deseja mesmo remover campanha <b><%= @campaign.title%></b> ?</h4>
+    </div>
+    <div class="modal-footer">
+      <div class="col s8 m8 offset-m6 l4 offset-l6">
+          <button class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</button>
+      </div>
+      <div class="col s2 m2 l2">
+        <%= form_for @campaign, method: 'delete', html: {class: 'remove_campaign'} do |f| %>
+          <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat">Remover</button>
         <% end %>
       </div>
     </div>
