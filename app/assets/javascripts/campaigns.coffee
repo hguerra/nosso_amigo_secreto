@@ -28,7 +28,7 @@ $(document).on 'turbolinks:load', ->
     return false
 
   $('.raffle_campaign').on 'submit', (e) ->
-    $.ajax '',
+    $.ajax e.target.action,
         type: 'POST'
         dataType: 'json',
         data: {}
